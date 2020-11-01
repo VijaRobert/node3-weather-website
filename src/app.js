@@ -59,11 +59,14 @@ app.get('/weather', (req, res) => {
             if (error) {
                 return res.send({ error })
             }
-
-            res.send({
-                forecast: forecastData,
+            console.log(forecastData)
+            console.log('test')
+            return res.send({
+                forecast: forecastData.temperature,
                 location,
-                address: req.query.address
+                address: req.query.address,
+                weatherMessage: 'It is currently ' + forecastData.temperature +' degrees out. It feels like ' + forecastData.feelsLike + ' degrees out.'
+        
             })
         })
     })

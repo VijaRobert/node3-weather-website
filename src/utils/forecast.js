@@ -11,11 +11,13 @@ const forecast = (latitude,longitude, callback) => {
         } else if (response.body.success == false) {
             console.log(response.body.error.info)
         } else {
-           const currentDay = response.body.current
-           const temperature = currentDay.temperature
-           const feelsLike = currentDay.feelslike
-           const weatherMessage = 'It is currently ' + temperature +' degrees out. It feels like ' + feelsLike + ' degrees out.'
-           // console.log(weatherMessage)
+            callback(undefined, {
+           currentDay: response.body.current,
+           temperature: response.body.current.temperature,
+           feelsLike: response.body.current.feelslike,
+           //weatherMessage: 'It is currently ' + temperature +' degrees out. It feels like ' + feelsLike + ' degrees out.'
+           //console.log(weatherMessage)
+            })
         }
 })
 }
